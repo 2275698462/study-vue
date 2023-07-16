@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <button @click="count--">-</button>
+    <span>{{ count }}</span>
+    <button v-on:click="count++">+</button>
+
+    <button @click="fn">切换显示隐藏</button>
+    <h1 v-show="isShow">程序员校花</h1>
+
+    <button @click="buy(10)">咖啡10元</button>
+    <button @click="buy(8)">牛奶8元</button>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            count: 100,
+            isShow: true
+        },
+        methods: {
+            fn() {
+                // this 指向 Vue 实例
+                console.log(this === app) // true
+                this.isShow = !this.isShow
+            },
+            buy(price) {
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
