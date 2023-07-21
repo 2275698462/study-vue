@@ -1,21 +1,27 @@
 <template>
   <div class="app">
-    <BaseSelect
-      v-model="selectId"
-    ></BaseSelect>
+    <button @click="openDialog">退出按钮</button>
+    <!-- :visible.sync  === :visible="isShow" + @update:visible="isShow=$event" -->
+    <BaseDialog :visible.sync="isShow"></BaseDialog>
   </div>
 </template>
 
 <script>
-import BaseSelect from './components/BaseSelect.vue'
+import BaseDialog from './components/BaseDialog.vue'
+
 export default {
   data() {
     return {
-      selectId: '102',
+      isShow: false,
     }
   },
+  methods: {
+    openDialog() {
+      this.isShow = true
+    },
+  },
   components: {
-    BaseSelect,
+    BaseDialog,
   },
 }
 </script>
