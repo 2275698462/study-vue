@@ -1,27 +1,39 @@
 <template>
   <div class="app">
-    <button @click="openDialog">退出按钮</button>
-    <!-- :visible.sync  === :visible="isShow" + @update:visible="isShow=$event" -->
-    <BaseDialog :visible.sync="isShow"></BaseDialog>
+    <div v-if="isShowEdit">
+      <input type="text" v-model="editValue" ref="inp" />
+      <button>确认</button>
+    </div>
+    <div v-else>
+      <span>{{ title }}</span>
+      <button @click="editFn">编辑</button>
+    </div>
   </div>
 </template>
 
 <script>
-import BaseDialog from './components/BaseDialog.vue'
-
 export default {
   data() {
     return {
-      isShow: false,
+      title: '大标题',
+      isShowEdit: false,
+      editValue: '',
     }
   },
   methods: {
-    openDialog() {
-      this.isShow = true
+    editFn() {
+      // 1.显示文本框
+      this.isShowEdit = true
+      // 2.让文本框聚焦 （会等 dom 更新完之后 立马执行 nextTick 中的回调函数）
+      this.$nextTick(() => {
+        console.log(this.$refs.inp)
+        this.$refs.inp.focus()
+      })
+      // 不精准
+      // setTimeout(() => {
+      //   this.$refs.inp.focus()
+      // }, 0)
     },
-  },
-  components: {
-    BaseDialog,
   },
 }
 </script>
