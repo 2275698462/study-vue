@@ -1,15 +1,45 @@
-import Home from '@/views/Home'
-import Search from '@/views/Search'
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-Vue.use(VueRouter) // VueRouter插件初始化
+import VueRouter from "vue-router";
+import Layout from "@/views/Layout";
+import ArticleDetail from "@/views/ArticleDetail";
+import Article from "@/views/Article.vue";
+import Collect from "@/views/Collect.vue";
+import Like from "@/views/Like.vue";
+import User from "@/views/User.vue";
+Vue.use(VueRouter)
 
-// 创建了一个路由对象
 const router = new VueRouter({
-  routes: [
-    { path: '/home', component: Home },
-    { path: '/search', component: Search }
-  ]
+    routes: [
+        {
+            path: '/',
+            component: Layout,
+            redirect: 'article',
+            // 配置嵌套子路由
+            children: [
+                {
+                    path: '/article',
+                    component: Article,
+                },
+                {
+                    path: '/collect',
+                    component: Collect,
+                },
+                {
+                    path: '/like',
+                    component: Like,
+                },
+                {
+                    path: '/user',
+                    component: User,
+                },
+
+            ]
+        },
+        {
+            path: '/detail/:id',
+            component: ArticleDetail
+        }
+    ]
 })
 
 export default router

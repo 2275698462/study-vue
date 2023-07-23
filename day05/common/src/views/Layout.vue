@@ -1,12 +1,21 @@
 <template>
   <div class="h5-wrapper">
-    <router-view></router-view>
+    <div class="content">
+      <!-- 二次路由出口-->
+      <router-view></router-view>
+    </div>
+    <nav class="tabbar">
+      <router-link to="/article">面经</router-link>
+      <router-link to="/collect">收藏</router-link>
+      <router-link to="/like">喜欢</router-link>
+      <router-link to="/user">我的</router-link>
+    </nav>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'LayoutPage'
 }
 </script>
 
@@ -38,9 +47,9 @@ body{
       font-size: 14px;
       color: #333;
       -webkit-tap-highlight-color: transparent;
-      &.router-link-active {
-        color: #fa0;
-      }
+    }
+    a.router-link-active {
+      color: orange;
     }
   }
 }
