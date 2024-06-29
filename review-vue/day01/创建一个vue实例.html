@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建vue实例</title>
+</head>
+<body>
+<div id="app">
+    <h1 title="abc">{{ msg + "安安" }}</h1>
+    <button @click="count--">-</button>
+    {{ count }}
+    <button @click="count++">+</button>
+    <button @click="a1">弹出警告</button>
+    <h1 v-show="isShow">888</h1>
+    <button @click="fn">显示隐藏按钮</button>
+</div>
+
+<!-- 引入的是开发版本包 - 包含完整的注释和警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            msg: "校花好美",
+            count: '1',
+            isShow: true
+        },
+        methods: {
+            a1 () {
+                console.log(this.msg)
+            },
+            fn () {
+                this.isShow = !this.isShow
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
