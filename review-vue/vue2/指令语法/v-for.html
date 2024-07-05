@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for语法</title>
+</head>
+<body>
+<div id="app">
+    <h3>水果店</h3>
+    <ul>
+        <li v-for="(item, index) in list">
+            {{item}}
+        </li>
+    </ul>
+</div>
+
+<!-- 引入的是开发版本包 - 包含完整的注释和警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            list: ['西瓜🍉', '苹果🍎', '鸭梨🍐']
+        },
+        methods: {
+
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <title>记事本</title>
+</head>
+<body>
+
+<!-- 主体区域 -->
+<section id="app">
+    <!-- 输入框 -->
+    <header class="header">
+        <h1>小黑记事本</h1>
+        <input placeholder="请输入任务" class="new-todo" v-model="addTaskContent"/>
+        <button @click="add(addTaskContent)" class="add">添加任务</button>
+    </header>
+    <!-- 列表区域 -->
+    <section class="main">
+        <ul class="todo-list">
+            <li v-for="(item, index) in taskList" :key="item.id" class="todo">
+                <div class="view">
+                    <span class="index">{{index + 1}}.</span> <label>{{item.content}}</label>
+                    <button @click="del(item.id)" class="destroy"></button>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <!-- 统计和清空 -->
+    <footer class="footer">
+        <!-- 统计 -->
+        <span class="todo-count">合 计:<strong> {{taskList.length}} </strong></span>
+        <!-- 清空 -->
+        <button @click="clear" class="clear-completed">
+            清空任务
+        </button>
+    </footer>
+</section>
+
+<!-- 底部 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            addTaskContent: '',
+            taskList: [
+                {id: 1, content: '跑步 60 分钟'},
+                {id: 2, content: '吃饭 10 分钟'},
+                {id: 3, content: '睡觉 30 分钟'},
+            ]
+        },
+        methods: {
+            del(id) {
+                this.taskList = this.taskList.filter(
+                    taskListItem => taskListItem.id !== id
+                )
+            },
+            add(content) {
+                // 模拟自增 id
+                if (this.taskList.length !== 0) {
+                    const id = this.taskList[this.taskList.length - 1].id
+                    this.taskList = [...this.taskList, {
+                        id: id + 1,
+                        content: content
+                    }]
+                } else {
+                    // 没任务时默认 id 为 1计数
+                    this.taskList = [{id: 1, content: content}]
+                }
+                this.addTaskContent = ''
+            },
+            clear() {
+                this.taskList = []
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind语法</title>
+</head>
+<body>
+<div id="app">
+    <img :src="imgUrl" :title="msg" width="800px">
+</div>
+
+<!-- 引入的是开发版本包 - 包含完整的注释和警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+
+<script>
+
+    const app = new Vue({
+        el: '#app',
+        data: {
+            imgUrl: 'https://pic.lpdxh.top/IMG_20221105_211212.jpg',
+            msg: '在读者沙龙的日子'
+        },
+        methods: {
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
